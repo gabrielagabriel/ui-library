@@ -1,5 +1,9 @@
 # Unreleased
 
+- **[NEW]** `ItineraryLocation`
+- **[NEW]** `ItineraryCollapsible`
+- **[UPDATE]** Refactored `Itinerary` to use `ItineraryLocation` and `ItineraryCollapsible`
+- **[UPDATE]** `Bullet` component size is no longer based on 'content-box' but 'border-box'
 - [...]
 
 # v18.1.0 (30/01/2020)

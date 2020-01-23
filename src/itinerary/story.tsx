@@ -86,6 +86,9 @@ stories.add('default', () => {
         small={boolean('small', false)}
         headline={headline}
         highlightRoad={highlightRoad}
+        isCollapsible={boolean('isCollapsible', false)}
+        collapsedLabel={text('collapsed label', `${placesWithStopover.length} stops`)}
+        collapsedAriaLabel={text('collapsed aria label', 'Show or hide all stops')}
       />
     </div>
   )

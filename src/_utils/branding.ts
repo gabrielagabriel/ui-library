@@ -101,6 +101,10 @@ export const componentSizes = {
   timeWidth: '48px',
   buttonIconSize: '48px',
   wrapper: '662px',
+  bulletSize: '10px',
+  bulletSizeSmall: '8px',
+  bulletSizeMap: '18px',
+  roadWidth: '4px',
 }
 
 export const modalSize = {

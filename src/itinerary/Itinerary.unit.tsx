@@ -109,4 +109,21 @@ describe('Itinerary component', () => {
       expect(ul.hasClass('kirk-itinerary--noTime')).toBe(true)
     })
   })
+
+  describe('Should handle highlightRoad', () => {
+    it('Should add kirk-itinerary--highlightRoad class by default', () => {
+      const itinerary = shallow(<Itinerary places={places} />)
+      expect(itinerary.find('.kirk-itinerary--highlightRoad').exists()).toBe(true)
+    })
+
+    it('Should add kirk-itinerary--highlightRoad class if highighlightRoad is true', () => {
+      const itinerary = shallow(<Itinerary places={places} />)
+      expect(itinerary.find('.kirk-itinerary--highlightRoad').exists()).toBe(true)
+    })
+
+    it('Should not add kirk-itinerary--highlightRoad class highighlightRoad is false', () => {
+      const itinerary = shallow(<Itinerary places={places} highlightRoad={false} />)
+      expect(itinerary.find('.kirk-itinerary--highlightRoad').exists()).toBe(false)
+    })
+  })
 })

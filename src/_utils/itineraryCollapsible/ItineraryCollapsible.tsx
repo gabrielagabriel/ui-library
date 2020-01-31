@@ -6,7 +6,7 @@ import { color } from '_utils/branding'
 import KEYCODES from '_utils/keycodes'
 import Text, { TextDisplayType, TextTagType } from 'text'
 import Bullet, { BulletTypes } from 'bullet'
-import ItineraryLocation, { computeKeyFromPlace } from 'itineraryLocation'
+import ItineraryLocation, { computeKeyFromPlace } from '_utils/itineraryLocation'
 
 export interface ItineraryCollapsibleProps {
   readonly places: Place[]

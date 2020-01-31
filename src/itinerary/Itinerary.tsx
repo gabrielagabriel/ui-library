@@ -8,8 +8,8 @@ import Text, { TextDisplayType, TextTagType } from 'text'
 import SubHeader from 'subHeader'
 import BlankSeparator from 'blankSeparator'
 import Bullet, { BulletTypes } from 'bullet'
-import ItineraryCollapsible from 'itineraryCollapsible'
-import ItineraryLocation from 'itineraryLocation'
+import ItineraryCollapsible from '_utils/itineraryCollapsible'
+import ItineraryLocation, { computeKeyFromPlace } from '_utils/itineraryLocation'
 
 export interface ItineraryProps {
   readonly ariaLabelledBy?: string
@@ -50,7 +50,7 @@ const computeRootA11yProps = (ariaLabel?: string, ariaLabelledBy?: string): Root
 // Get places between departure and arrival
 const getIntermediatePlaces = (places: Place[]) => places.slice(1, -1)
 
-const renderDepartureOrArrival = (
+const renderLocation = (
   places: Place[],
   isArrival: boolean,
   small: boolean,
@@ -69,7 +69,7 @@ const renderDepartureOrArrival = (
       place={place}
       isArrival={isArrival}
       hasTime={!small && withTime}
-      hasSubLabel={!small && Boolean(place.subLabel)}
+      hasSubLabel={!small && !isEmpty(place.subLabel)}
       hasBottomAddon={isArrival ? hasBottomAddon : false}
     />
   )
@@ -85,9 +85,11 @@ const renderAddon = (type: string, addon: string, ariaLabel: string) => {
       className={`kirk-itineraryLocation kirk-itinerary-addon kirk-itinerary-addon--${type}`}
       aria-label={ariaLabel}
     >
-      {type === 'from' && <div className="kirk-itineraryLocation-road" aria-hidden="true" />}
-      <Bullet type={BulletTypes.ADDON} />
-      <div className="kirk-itineraryLocation-city">
+      <div className="kirk-itineraryLocation-roadContainer" aria-hidden="true">
+        <Bullet className="kirk-itineraryLocation-bullet" type={BulletTypes.ADDON} />
+        {type === 'from' && <div className="kirk-itineraryLocation-road" aria-hidden="true" />}
+      </div>
+      <div className="kirk-itineraryLocation-label">
         <Text
           tag={TextTagType.PARAGRAPH}
           display={TextDisplayType.CAPTION}
@@ -132,9 +134,16 @@ const Itinerary = ({
           <BlankSeparator />
         </Fragment>
       )}
-      <ul className={cc([{ 'kirk-itinerary--noTime': small || !withTime }])}>
+      <ul
+        className={cc([
+          {
+            'kirk-itinerary--noTime': small || !withTime,
+            'kirk-itinerary--highlightRoad': highlightRoad,
+          },
+        ])}
+      >
         {renderAddon('from', fromAddon, fromAddonAriaLabel)}
-        {renderDepartureOrArrival(places, false, small, withTime, false)}
+        {renderLocation(places, false, small, withTime, false)}
         {isCollapsible && intermediatePlaces.length > 0 && (
           <ItineraryCollapsible
             places={intermediatePlaces}
@@ -149,9 +158,10 @@ const Itinerary = ({
               place={place}
               hasTime={!small && withTime}
               hasSubLabel={!small && Boolean(place.subLabel)}
+              key={computeKeyFromPlace(place)}
             />
           ))}
-        {renderDepartureOrArrival(places, true, small, withTime, isNonEmptyString(toAddon))}
+        {renderLocation(places, true, small, withTime, isNonEmptyString(toAddon))}
         {renderAddon('to', toAddon, toAddonAriaLabel)}
       </ul>
     </div>

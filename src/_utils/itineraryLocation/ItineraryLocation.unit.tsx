@@ -33,7 +33,6 @@ const placeWithButton: Place = {
 
 const placeWithKey: Place = {
   ...place,
-  key: 'route-start-paris',
 }
 
 describe('ItineraryLocation', () => {
@@ -62,21 +61,6 @@ describe('ItineraryLocation', () => {
   it('Should display Proximity if found in subLabel', () => {
     const wrapper = shallow(<ItineraryLocation place={placeWithProximity} hasSubLabel />)
     expect(wrapper.find(Proximity).prop('value')).toBe('FAR')
-  })
-
-  it("Should use subLabel in key if it's a string", () => {
-    const wrapper = shallow(<ItineraryLocation place={place} hasSubLabel />)
-    expect(wrapper.key()).toBe('Paris-21 Jump Street-2017-12-11T09:00')
-  })
-
-  it("Should not use subLabel in key if it's a JSX object", () => {
-    const wrapper = shallow(<ItineraryLocation place={placeWithProximity} hasSubLabel />)
-    expect(wrapper.key()).toBe('Paris-2017-12-11T09:00')
-  })
-
-  it('Should use key attribute as key if provided', () => {
-    const wrapper = shallow(<ItineraryLocation place={placeWithKey} />)
-    expect(wrapper.key()).toBe('route-start-paris')
   })
 
   it('Should display time if "hasTime"', () => {

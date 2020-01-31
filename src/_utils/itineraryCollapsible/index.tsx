@@ -1,17 +1,16 @@
 import styled from 'styled-components'
-import { color, font, radius, space, componentSizes } from '_utils/branding'
+import { color, font, radius, space, componentSizes, transition } from '_utils/branding'
 
 import ItineraryCollapsible from './ItineraryCollapsible'
 
 const minHeight = '32px' // space.l for the minimum content + 2*space.m for vertical padding
-const transitionDelay = '200ms'
 
 const StyledItineraryCollapsible = styled(ItineraryCollapsible)`
   & {
     position: relative;
     display: block;
     list-style-type: none;
-    cursor: row-resize;
+    cursor: pointer;
     min-height: ${minHeight};
   }
 
@@ -25,7 +24,8 @@ const StyledItineraryCollapsible = styled(ItineraryCollapsible)`
   .kirk-itineraryCollapsible-collapsed,
   .kirk-itineraryCollapsible-extended {
     opacity: 1;
-    transition: height ${transitionDelay} ease-in-out, opacity ${transitionDelay} linear;
+    transition: height ${transition.duration.base} ease-in-out,
+      opacity ${transition.duration.base} linear;
   }
 
   & .kirk-itineraryCollapsible-collapsed {
@@ -73,10 +73,25 @@ const StyledItineraryCollapsible = styled(ItineraryCollapsible)`
     height: ${font.m.lineHeight};
   }
 
-  & .kirk-itineraryLocation-city .kirk-text,
+  & .kirk-itineraryLocation-label .kirk-text,
   & .kirk-itineraryCollapsible-collapsed .kirk-text {
     font-size: ${font.s.size};
     line-height: ${font.m.lineHeight};
+  }
+
+  & .kirk-itineraryLocation-wrapper .kirk-itineraryLocation-road {
+    height: calc(100% - ${componentSizes.bulletSizeSmall});
+  }
+  & .kirk-itineraryLocation-label {
+    padding-bottom: ${space.m};
+  }
+
+  & .kirk-itineraryLocation-roadContainer {
+    margin-top: 0;
+  }
+
+  & .kirk-itineraryLocation-wrapper {
+    padding: 0;
   }
 `
 export { ItineraryCollapsibleProps } from './ItineraryCollapsible'

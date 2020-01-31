@@ -120,7 +120,6 @@ const ItineraryLocation = ({
   return (
     <li
       className={classNames}
-      key={computeKeyFromPlace(place)}
       itemProp="location"
       itemScope
       itemType="http://schema.org/Place"
@@ -129,9 +128,14 @@ const ItineraryLocation = ({
       {renderMeta(place.mainLabel, place.subLabel)}
       <Component {...hrefProps} aria-label={place.actionAriaLabel}>
         {hasTime && renderTime(place.isoDate, place.time)}
-        <div className="kirk-itineraryLocation-city">
-          {hasRoad && <div className="kirk-itineraryLocation-road" aria-hidden="true" />}
-          <Bullet type={isSmall ? BulletTypes.SMALL : BulletTypes.DEFAULT} />
+        <div className="kirk-itineraryLocation-roadContainer" aria-hidden="true">
+          <Bullet
+            className="kirk-itineraryLocation-bullet"
+            type={isSmall ? BulletTypes.SMALL : BulletTypes.DEFAULT}
+          />
+          {hasRoad && <div className="kirk-itineraryLocation-road" />}
+        </div>
+        <div className="kirk-itineraryLocation-label">
           {renderMainLabel(place.mainLabel)}
           {hasSubLabel && renderSubLabel(place.subLabel)}
         </div>

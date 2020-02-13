@@ -13,6 +13,11 @@ import '../src/pages/messaging/inbox.story'
 import '../src/pages/messaging/brazemarketing.story'
 import '../src/pages/ridedetails/carpool.story'
 
+// Playground
+import '../src/playground/profile/inbox.story'
+import '../src/playground/profile/mobile.story'
+import '../src/playground/profile/about.story'
+
 // Widgets
 import '../src/_utils/story'
 import '../src/autoComplete/story'

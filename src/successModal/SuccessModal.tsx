@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-
-import Modal, { ModalSize } from 'modal'
-import { ModalProps } from 'modal/Modal'
-import Button, { ButtonStatus } from 'button'
-import TheVoice from 'theVoice'
-import { assertModalSizes } from '_utils/assert'
 import uuidv4 from 'uuid/v4'
+
+import IllustratedSection from 'layout/section/illustratedSection'
+
+import Modal, { ModalProps } from 'modal'
+import Button, { ButtonStatus } from 'button'
+import TextDisplay1 from 'typography/display1'
 
 export interface SuccessModalProps extends ModalProps {
   readonly confirmLabel?: string
@@ -13,16 +13,10 @@ export interface SuccessModalProps extends ModalProps {
   readonly imageText?: string
 }
 
-export enum SuccessModalSize {
-  SMALL = 'small',
-  LARGE = 'large',
-}
-
 class SuccessModal extends Component<SuccessModalProps> {
   static defaultProps: Partial<SuccessModalProps> = {
     isOpen: false,
     closeOnEsc: false,
-    size: ModalSize.SMALL,
     forwardedRef: null,
     imageText: '',
   }
@@ -40,11 +34,8 @@ class SuccessModal extends Component<SuccessModalProps> {
       className,
     } = this.props
 
-    // Will throw if we use a non allowed modal size
-    assertModalSizes(SuccessModalSize, this.props.size)
-
     const baseClassName = 'kirk-successModal'
-    const successContentId = `${baseClassName}-bodyItem-${uuidv4()}`
+    const successContentId = `${baseClassName}-content-${uuidv4()}`
 
     return (
       <Modal
@@ -59,25 +50,16 @@ class SuccessModal extends Component<SuccessModalProps> {
         modalContentClassName={baseClassName}
         ariaLabelledBy={successContentId}
       >
-        <img
-          className={`${baseClassName}-bodyItem ${baseClassName}-image`}
-          src={imageSrc}
-          alt={imageText}
-          // This image is always decorative
-          aria-hidden
-        />
-        <div id={successContentId} className={`${baseClassName}-bodyItem`}>
-          <TheVoice isInverted>{children}</TheVoice>
-          <footer className={`${baseClassName}-footer`}>
-            <Button
-              status={ButtonStatus.SECONDARY}
-              className={`${baseClassName}-confirmButton`}
-              onClick={onClose}
-            >
-              {confirmLabel}
-            </Button>
-          </footer>
-        </div>
+        <IllustratedSection illustrationUrl={imageSrc} illustrationAlt={imageText}>
+          <TextDisplay1 isInverted>{children}</TextDisplay1>
+          <Button
+            status={ButtonStatus.SECONDARY}
+            className={`${baseClassName}-confirmButton`}
+            onClick={onClose}
+          >
+            {confirmLabel}
+          </Button>
+        </IllustratedSection>
       </Modal>
     )
   }

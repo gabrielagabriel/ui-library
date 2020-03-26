@@ -55,7 +55,7 @@ describe('<SuccessModal>', () => {
   })
 
   it('Should have a confirmation button and call the according function when click on it', () => {
-    const confirmButton = wrapperOpen.find('.kirk-button-secondary')
+    const confirmButton = wrapperOpen.find('[data-test="success-button"]')
     expect(confirmButton.text()).toBe('Confirm')
     confirmButton.simulate('click')
     expect(mockClose).toHaveBeenCalledTimes(1)

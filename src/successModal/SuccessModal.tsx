@@ -55,6 +55,7 @@ class SuccessModal extends Component<SuccessModalProps> {
           <Button
             status={ButtonStatus.SECONDARY}
             className={`${baseClassName}-confirmButton`}
+            data-test="success-button"
             onClick={onClose}
           >
             {confirmLabel}

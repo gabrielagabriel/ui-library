@@ -21,6 +21,7 @@ const StyledSuccessModal = styled(Modal)`
     justify-content: center;
     padding: 0;
     margin: 0 auto;
+    width: 100%;
     height: 100%;
     border-radius: 0;
     background-color: ${color.successBackground};

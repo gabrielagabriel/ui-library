@@ -22,7 +22,6 @@ const StyledSuccessModal = styled(Modal)`
     padding: 0;
     margin: 0 auto;
     width: 100%;
-    height: 100%;
     border-radius: 0;
     background-color: ${color.successBackground};
   }
@@ -40,12 +39,19 @@ const StyledSuccessModal = styled(Modal)`
   }
 `
 
+// Centering vertically IllustratedSection
 const StyledIllustratedSection = styled(IllustratedSection)`
   display: flex;
-  height: 100%;
   flex: 1;
 
   .kirk-illustratedSection-illustration {
+    padding-top: calc(2 * ${space.xxl});
+    justify-content: center;
+    align-items: center;
+
+    @media (${responsiveBreakpoints.isMediaLarge}) {
+      padding-top: 0;
+    }
   }
 
   .kirk-illustratedSection-content {
@@ -55,8 +61,19 @@ const StyledIllustratedSection = styled(IllustratedSection)`
   }
 `
 
+// Apply layout and spacements to Text
 const StyledText = styled(TextDisplay1)`
+  padding: ${space.xl};
   flex: 1;
+`
+
+// Override Button
+const StyledButton = styled(Button)`
+  margin: ${space.xl};
+`
+
+const Action = styled.div`
+  padding: ${space.xl};
 `
 
 export interface SuccessModalProps extends ModalProps {
@@ -86,8 +103,7 @@ class SuccessModal extends Component<SuccessModalProps> {
       className,
     } = this.props
 
-    const baseClassName = 'kirk-successModal'
-    const successContentId = `${baseClassName}-content-${uuidv4()}`
+    const successContentId = `kirk-successModal-content-${uuidv4()}`
 
     return (
       <StyledSuccessModal
@@ -99,19 +115,19 @@ class SuccessModal extends Component<SuccessModalProps> {
         displayDimmer={false}
         forwardedRef={forwardedRef}
         className={className}
-        modalContentClassName={baseClassName}
         ariaLabelledBy={successContentId}
       >
         <StyledIllustratedSection illustrationUrl={imageSrc} illustrationAlt={imageText}>
           <StyledText isInverted>{children}</StyledText>
-          <Button
-            status={ButtonStatus.SECONDARY}
-            className={`${baseClassName}-submit`}
-            data-test="success-button"
-            onClick={onClose}
-          >
-            {confirmLabel}
-          </Button>
+          <Action>
+            <StyledButton
+              status={ButtonStatus.SECONDARY}
+              data-test="success-button"
+              onClick={onClose}
+            >
+              {confirmLabel}
+            </StyledButton>
+          </Action>
         </StyledIllustratedSection>
       </StyledSuccessModal>
     )

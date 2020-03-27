@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import uuidv4 from 'uuid/v4'
+
 import styled from 'styled-components'
 
-import { color, font, space, responsiveBreakpoints } from '_utils/branding'
+import { color, space, responsiveBreakpoints } from '_utils/branding'
 
 import IllustratedSection from 'layout/section/illustratedSection'
 
@@ -10,12 +11,12 @@ import Modal, { ModalProps } from 'modal'
 import Button, { ButtonStatus } from 'button'
 import TextDisplay1 from 'typography/display1'
 
+// Override Modal: Success
 const StyledSuccessModal = styled(Modal)`
   padding: 0;
   text-align: center;
   background-color: ${color.successBackground};
 
-  /* overrides */
   .kirk-modal-dialog {
     display: flex;
     justify-content: center;
@@ -39,7 +40,7 @@ const StyledSuccessModal = styled(Modal)`
   }
 `
 
-// Centering vertically IllustratedSection
+// Override IllustratedSection: Centering vertically
 const StyledIllustratedSection = styled(IllustratedSection)`
   display: flex;
   flex: 1;
@@ -82,56 +83,45 @@ export interface SuccessModalProps extends ModalProps {
   readonly imageText?: string
 }
 
-class SuccessModal extends Component<SuccessModalProps> {
-  static defaultProps: Partial<SuccessModalProps> = {
-    isOpen: false,
-    closeOnEsc: false,
-    forwardedRef: null,
-    imageText: '',
-  }
+const SuccessModal = (props: SuccessModalProps): JSX.Element => {
+  const {
+    isOpen = false,
+    onClose = () => {},
+    forwardedRef = null,
+    confirmLabel,
+    imageSrc,
+    imageText = '',
+    children,
+    className,
+  } = props
 
-  render() {
-    const {
-      isOpen,
-      children,
-      size,
-      onClose,
-      confirmLabel,
-      forwardedRef,
-      imageSrc,
-      imageText,
-      className,
-    } = this.props
+  const successContentId = `kirk-successModal-content-${uuidv4()}`
 
-    const successContentId = `kirk-successModal-content-${uuidv4()}`
-
-    return (
-      <StyledSuccessModal
-        onClose={onClose}
-        isOpen={isOpen}
-        size={size}
-        closeOnEsc={false}
-        displayCloseButton={false}
-        displayDimmer={false}
-        forwardedRef={forwardedRef}
-        className={className}
-        ariaLabelledBy={successContentId}
-      >
-        <StyledIllustratedSection illustrationUrl={imageSrc} illustrationAlt={imageText}>
-          <StyledText isInverted>{children}</StyledText>
-          <Action>
-            <StyledButton
-              status={ButtonStatus.SECONDARY}
-              data-test="success-button"
-              onClick={onClose}
-            >
-              {confirmLabel}
-            </StyledButton>
-          </Action>
-        </StyledIllustratedSection>
-      </StyledSuccessModal>
-    )
-  }
+  return (
+    <StyledSuccessModal
+      onClose={onClose}
+      isOpen={isOpen}
+      closeOnEsc={false}
+      displayCloseButton={false}
+      displayDimmer={false}
+      forwardedRef={forwardedRef}
+      className={className}
+      ariaLabelledBy={successContentId}
+    >
+      <StyledIllustratedSection illustrationUrl={imageSrc} illustrationAlt={imageText}>
+        <StyledText isInverted>{children}</StyledText>
+        <Action>
+          <StyledButton
+            status={ButtonStatus.SECONDARY}
+            data-test="success-button"
+            onClick={onClose}
+          >
+            {confirmLabel}
+          </StyledButton>
+        </Action>
+      </StyledIllustratedSection>
+    </StyledSuccessModal>
+  )
 }
 
 export default SuccessModal

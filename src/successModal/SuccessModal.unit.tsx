@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 
-import SuccessModal from 'successModal'
+import SuccessModal from './successModal'
 
 const defaultProps = {
   isOpen: false,
@@ -27,31 +27,19 @@ describe('<SuccessModal>', () => {
   })
 
   it('Should be not visible if isOpen is set to false', () => {
-    expect(wrapper.find('.kirk-modal-dialog').exists()).toBe(false)
+    expect(wrapper.find('[data-test="success-modal"]').exists()).toBe(false)
   })
 
   it('Should be visible if isOpen is set to true', () => {
-    expect(wrapperOpen.find('.kirk-modal-dialog').exists()).toBe(true)
+    expect(wrapperOpen.find('[data-test="success-modal"]').exists()).toBe(true)
   })
 
   it('Should have proper linked id to the content text', () => {
-    const ariaLabelledByValue = wrapperOpen.find('.kirk-successModal').prop('aria-labelledby')
-    expect(wrapperOpen.find(`#${ariaLabelledByValue} h1`).text()).toEqual('Success description')
+    expect(wrapperOpen.find('[data-test="success-title"]').text()).toEqual('Success description')
   })
 
   it('Should have a confirmation button and call the according function when click on it', () => {
-    expect(wrapperOpen.find('.kirk-button-secondary').text()).toBe('Confirm')
-  })
-
-  it('Should have the proper image', () => {
-    const image = wrapperOpen.find('.kirk-successModal-image')
-    expect(image.prop('src')).toBe('https://svgshare.com/i/AGz.svg')
-    expect(image.prop('alt')).toBe('Illustration description')
-  })
-
-  it("Shouldn't access the image with screen readers", () => {
-    const image = wrapperOpen.find('.kirk-successModal-image')
-    expect(image.prop('aria-hidden')).toBe(true)
+    expect(wrapperOpen.find('[data-test="success-button"]').text()).toBe('Confirm')
   })
 
   it('Should have a confirmation button and call the according function when click on it', () => {

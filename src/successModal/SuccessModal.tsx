@@ -44,9 +44,13 @@ const SuccessModal = (props: SuccessModalProps): JSX.Element => {
       forwardedRef={forwardedRef}
       className={className}
       ariaLabelledBy={successContentId}
+      data-test="success-modal"
     >
       <StyledIllustratedSection illustrationUrl={imageSrc} illustrationAlt={imageText}>
-        <SuccessTitle isInverted>{children}</SuccessTitle>
+        <SuccessTitle isInverted data-test="success-title">
+          {' '}
+          {children}
+        </SuccessTitle>
         <SuccessAction>
           <SuccessButton
             status={ButtonStatus.SECONDARY}

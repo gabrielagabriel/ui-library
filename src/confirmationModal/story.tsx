@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import { storiesOf } from '@storybook/react'
 import { withKnobs, boolean, text, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-
+import Section from 'layout/section/baseSection'
 import { ConfirmationModalProps, ConfirmationModalSize } from './ConfirmationModal'
 import ConfirmationModal, { ConfirmationModalStatus } from 'confirmationModal'
 import confirmationModalDoc from './specifications/confirmationModal.md'
 
-const stories = storiesOf('ConfirmationModal', module)
+const stories = storiesOf('Widgets|Modal|ConfirmationModal', module)
 stories.addDecorator(withKnobs)
 
 class ConfirmationModalOpener extends Component<ConfirmationModalProps> {
@@ -32,7 +32,7 @@ class ConfirmationModalOpener extends Component<ConfirmationModalProps> {
 
   render() {
     return (
-      <div>
+      <Section>
         <button type="button" onClick={this.openConfirmationModal}>
           Open ConfirmationModal
         </button>
@@ -43,18 +43,16 @@ class ConfirmationModalOpener extends Component<ConfirmationModalProps> {
           isOpen={this.state.confirmationModalOpen}
           confirmIsLoading={this.props.confirmIsLoading}
         >
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-          </div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua.
         </ConfirmationModal>
-      </div>
+      </Section>
     )
   }
 }
 
 stories.add(
-  'Warning',
+  'warning',
   () => (
     <ConfirmationModalOpener
       status={ConfirmationModalStatus.WARNING}
@@ -72,7 +70,7 @@ stories.add(
 )
 
 stories.add(
-  'Reminder',
+  'reminder',
   () => (
     <ConfirmationModalOpener
       status={ConfirmationModalStatus.REMINDER}

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import cc from 'classcat'
 import isEmpty from 'lodash.isempty'
 
+import Card from '_utils/card'
 import Avatar from 'avatar'
 import ComfortIcon from 'icon/comfortIcon'
 import LightningIcon from 'icon/lightningIcon'
@@ -9,7 +10,7 @@ import LadyIcon from 'icon/ladyIcon'
 import Star from 'icon/starIcon'
 import Itinerary from 'itinerary'
 import Item from '_utils/item'
-import Text, { TextDisplayType } from 'text'
+import Text, { TextDisplayType, TextTagType } from 'text'
 import { color } from '_utils/branding'
 
 /**
@@ -34,7 +35,7 @@ export interface TripCardProps {
   itinerary: Place[]
   driver?: User
   passengers?: User[]
-  price: string
+  price?: string
   flags?: {
     ladiesOnly?: boolean
     maxTwo?: boolean
@@ -46,7 +47,6 @@ export interface TripCardProps {
     autoApproval?: string
   }
   metaUrl?: string
-  highlighted?: string
   className?: Classcat.Class
   statusInformation?: {
     icon: JSX.Element
@@ -81,7 +81,6 @@ const TripCard = ({
   price,
   flags = {},
   titles = {},
-  highlighted = '',
   metaUrl = null,
   statusInformation = null,
   badge = null,
@@ -89,8 +88,10 @@ const TripCard = ({
 }: TripCardProps) => {
   const departure = itinerary[0]
   const arrival = itinerary[itinerary.length - 1]
-  const displayFlags = isEmpty(highlighted) && !isEmpty(flags)
   const itemPropName = `${departure.mainLabel} → ${arrival.mainLabel}`
+  const shouldDisplayBottomLeft = driver || !isEmpty(passengers)
+  const shouldDisplayBottomRight = !isEmpty(flags)
+  const shouldDisplayBottom = shouldDisplayBottomLeft || shouldDisplayBottomRight
 
   let componentTag
   let componentProps = {}
@@ -113,21 +114,23 @@ const TripCard = ({
   }
 
   return (
-    <li
+    <Card
       className={cc([
         'kirk-tripCard',
         {
-          'kirk-tripCard--highlighted': !!highlighted,
           'kirk-tripCard--with-badge': badge && badge.length,
+          'kirk-tripCard--with-price': price && price.length,
         },
         className,
       ])}
-      itemScope
-      itemType="http://schema.org/Event"
     >
       {React.createElement(
         componentTag,
-        componentProps,
+        {
+          ...componentProps,
+          itemScope: true,
+          itemType: 'http://schema.org/Event',
+        },
         <Fragment>
           {metaUrl && (
             <Fragment>
@@ -161,58 +164,73 @@ const TripCard = ({
               {title}
             </Text>
           )}
-
-          <div className="kirk-tripCard-main">
-            <Itinerary className="kirk-tripCard-itinerary" places={itinerary} />
-            <Text className="kirk-tripCard-price" display={TextDisplayType.TITLESTRONG}>
-              {price}
-            </Text>
-          </div>
-          <div className="kirk-tripCard-bottom">
-            {driver && (
-              <div className="kirk-tripCard-driver">
-                <div className="kirk-tripCard-avatar">
-                  <Avatar image={driver.avatarUrl} />
-                </div>
-                <div>
-                  <Text display={TextDisplayType.TITLE}>{driver.firstName}</Text>
-                  {driver.rating && (
-                    <div className="kirk-tripCard-ratingContainer">
-                      <Star fill={1} size={16} />
-                      <Text className="kirk-tripCard-rating">{driver.rating}</Text>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-            {passengers && (
-              <ul className="kirk-tripCard-passengers">
-                {passengers.length > PASSENGERS_TO_DISPLAY &&
-                  renderMorePassengers(passengers.length - PASSENGERS_TO_DISPLAY + 1)}
-                {passengers.length === PASSENGERS_TO_DISPLAY &&
-                  renderPassenger(passengers[PASSENGERS_TO_DISPLAY - 1])}
-                {passengers
-                  .slice(0, PASSENGERS_TO_DISPLAY - 1)
-                  .reverse()
-                  .map(renderPassenger)}
-              </ul>
-            )}
-            {highlighted && (
-              <Text className="kirk-tripCard-topText" display={TextDisplayType.TITLESTRONG}>
-                {highlighted}
+          <div className="kirk-tripCard-mainContainer">
+            <div className="kirk-tripCard-main">
+              <Itinerary className="kirk-tripCard-itinerary" places={itinerary} />
+              <Text className="kirk-tripCard-price" display={TextDisplayType.TITLESTRONG}>
+                {price}
               </Text>
-            )}
-            {displayFlags && (
-              <div className="kirk-tripCard-flags">
-                {flags.ladiesOnly && <LadyIcon title={titles.ladiesOnly || ''} />}
-                {flags.maxTwo && <ComfortIcon title={titles.maxTwo || ''} />}
-                {flags.autoApproval && <LightningIcon title={titles.autoApproval || ''} />}
+            </div>
+
+            {shouldDisplayBottom && (
+              <div
+                className={cc([
+                  'kirk-tripCard-bottom',
+                  { 'kirk-tripCard-bottom--only-right': !shouldDisplayBottomLeft },
+                ])}
+              >
+                {shouldDisplayBottomLeft && (
+                  <div className="kirk-tripCard-bottom-left">
+                    {driver && (
+                      <div className="kirk-tripCard-driver">
+                        <Avatar className="kirk-tripCard-avatar" image={driver.avatarUrl} />
+                        <div className="kirk-tripCard-driver-info">
+                          <Text
+                            className="kirk-tripCard-driver-name"
+                            tag={TextTagType.PARAGRAPH}
+                            display={TextDisplayType.TITLE}
+                          >
+                            {driver.firstName}
+                          </Text>
+                          {driver.rating && (
+                            <div className="kirk-tripCard-ratingContainer">
+                              <Star fill={1} size={16} />
+                              <Text className="kirk-tripCard-rating">{driver.rating}</Text>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    {!isEmpty(passengers) && (
+                      <ul className="kirk-tripCard-passengers">
+                        {passengers.length > PASSENGERS_TO_DISPLAY &&
+                          renderMorePassengers(passengers.length - PASSENGERS_TO_DISPLAY + 1)}
+                        {passengers.length === PASSENGERS_TO_DISPLAY &&
+                          renderPassenger(passengers[PASSENGERS_TO_DISPLAY - 1])}
+                        {passengers
+                          .slice(0, PASSENGERS_TO_DISPLAY - 1)
+                          .reverse()
+                          .map(renderPassenger)}
+                      </ul>
+                    )}
+                  </div>
+                )}
+
+                {shouldDisplayBottomRight && (
+                  <div className="kirk-tripCard-bottom-right">
+                    <div className="kirk-tripCard-flags">
+                      {flags.ladiesOnly && <LadyIcon title={titles.ladiesOnly || ''} />}
+                      {flags.maxTwo && <ComfortIcon title={titles.maxTwo || ''} />}
+                      {flags.autoApproval && <LightningIcon title={titles.autoApproval || ''} />}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
         </Fragment>,
       )}
-    </li>
+    </Card>
   )
 }
 

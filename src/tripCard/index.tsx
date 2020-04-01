@@ -1,22 +1,12 @@
 import styled from 'styled-components'
-import { color, radius, space, componentSizes, transition } from '_utils/branding'
+import { color, font, radius, space } from '_utils/branding'
 
 import TripCard from './TripCard'
 
 const StyledTripCard = styled(TripCard)`
-  & {
-    border-radius: ${radius.l};
-    box-shadow: 0 1pt 4pt rgba(0, 0, 0, 0.16), 0 2pt 8pt rgba(0, 0, 0, 0.08);
-    list-style-type: none;
-    transition: box-shadow ${transition.duration.base} ${transition.easing.default};
-  }
-
-  &:hover {
-    box-shadow: 0 2pt 8pt rgba(0, 0, 0, 0.08), 0 2pt 16pt rgba(0, 0, 0, 0.08);
-  }
-
   & a {
     display: block;
+    height: 100%;
     padding: ${space.l};
     text-decoration: none;
   }
@@ -26,7 +16,7 @@ const StyledTripCard = styled(TripCard)`
     padding-top: ${space.xl};
   }
 
-  .kirk-tripCard-badge {
+  & .kirk-tripCard-badge {
     position: absolute;
     top: 0;
     background: ${color.primary};
@@ -34,73 +24,117 @@ const StyledTripCard = styled(TripCard)`
     border-radius: 0 0 ${radius.m} ${radius.m};
   }
 
-  .kirk-item.kirk-tripCard-top-item {
+  & .kirk-item.kirk-tripCard-top-item {
     padding-top: 0;
   }
-  .kirk-item--highlighted .kirk-text-body {
+
+  & .kirk-item--highlighted .kirk-text-body {
     color: ${color.primary};
   }
 
-  .kirk-tripCard-title + .kirk-tripCard-main {
+  & .kirk-tripCard-title + .kirk-tripCard-mainContainer {
     margin-top: ${space.m};
   }
 
-  .kirk-tripCard-main {
+  & .kirk-tripCard-mainContainer {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  & .kirk-tripCard-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-bottom: ${space.l};
   }
 
-  .kirk-tripCard-itinerary {
-    flex: 1;
+  & .kirk-tripCard-itinerary {
+    min-width: 0; /* reset flex default to allow shrinking below content width */
   }
 
-  &.kirk-tripCard--highlighted .kirk-tripCard-price {
-    color: ${color.success};
+  &.kirk-tripCard--with-price .kirk-tripCard-itinerary {
+    padding-right: ${space.m};
   }
 
-  .kirk-tripCard-bottom {
+  & .kirk-tripCard-price {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  & .kirk-tripCard-bottom {
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
-  .kirk-tripCard-driver,
-  .kirk-tripCard-passengers {
+  & .kirk-tripCard-bottom--only-right {
+    justify-content: flex-end;
+  }
+
+  & .kirk-tripCard-bottom-left {
+    min-width: 0; /* reset flex default to allow shrinking below content width */
+  }
+
+  & .kirk-tripCard-bottom-right {
+    flex-shrink: 0;
+  }
+
+  & .kirk-tripCard-bottom-left + .kirk-tripCard-bottom-right {
+    margin-left: ${space.l};
+  }
+
+  & .kirk-tripCard-driver,
+  & .kirk-tripCard-passengers {
     display: flex;
     align-items: center;
     flex: 1;
-    margin-right: ${space.l};
+    min-width: 0; /* reset flex default to allow shrinking below content width */
   }
 
-  .kirk-tripCard-ratingContainer {
+  & .kirk-tripCard-driver-info {
+    min-width: 0; /* reset flex default to allow shrinking below content width */
+  }
+
+  & .kirk-tripCard-driver-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: calc(2 * ${font.m.lineHeight}); /* max 2 lines of text */
+  }
+
+  & .kirk-tripCard-ratingContainer {
     display: flex;
     margin-top: ${space.m};
   }
 
-  .kirk-tripCard-rating {
+  & .kirk-tripCard-rating {
     margin-left: ${space.m};
   }
 
   /* We reverse the passengers array to display the 1st one on top without touching z-indexes */
-  .kirk-tripCard-passengers {
+  & .kirk-tripCard-passengers {
     flex-direction: row-reverse;
     justify-content: flex-end;
     list-style-type: none;
   }
 
   /* To match the width of the time area of the Itinerary */
-  .kirk-tripCard-driver .kirk-tripCard-avatar {
-    min-width: calc(${componentSizes.timeWidth} + ${space.m});
+  & .kirk-tripCard-driver .kirk-tripCard-avatar {
+    flex-shrink: 0;
     margin-right: ${space.l};
   }
 
-  .kirk-tripCard-passengers .kirk-tripCard-avatar {
+  & .kirk-tripCard-passengers .kirk-tripCard-avatar {
     margin-right: -${space.m};
   }
-  .kirk-tripCard-passengers .kirk-avatar {
+
+  & .kirk-tripCard-passengers .kirk-avatar {
     border: 2px solid ${color.white};
     background: ${color.white};
   }
-  .kirk-tripCard-passengers .kirk-tripCard-passengers-more {
+
+  & .kirk-tripCard-passengers .kirk-tripCard-passengers-more {
     background: ${color.iconHighlight};
     border-radius: 50%;
     width: 40px;
@@ -113,10 +147,6 @@ const StyledTripCard = styled(TripCard)`
   & .kirk-tripCard-flags svg {
     display: inline-block;
     margin-left: ${space.m};
-  }
-
-  .kirk-tripCard-topText {
-    color: ${color.success};
   }
 `
 

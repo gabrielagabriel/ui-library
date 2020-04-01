@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { color, componentSizes, font, space, transition } from '_utils/branding'
+import { color, font, space, transition } from '_utils/branding'
 
 import Tabs from './Tabs'
 
@@ -10,7 +10,8 @@ const StyledTabs = styled(Tabs)`
     position: relative;
   }
 
-  & .kirk-tablist-wrapper {
+  & .kirk-tabs {
+    margin-bottom: ${space.l};
     border-bottom: 1px solid ${color.border};
   }
 
@@ -24,11 +25,6 @@ const StyledTabs = styled(Tabs)`
   /* Remove scrollbar */
   & .kirk-tablist::-webkit-scrollbar {
     display: none;
-  }
-
-  & .kirk-tablist-wrapped {
-    width: ${componentSizes.wrapper};
-    padding: 0 ${space.xl};
   }
 
   & .kirk-tab {
@@ -63,23 +59,12 @@ const StyledTabs = styled(Tabs)`
   }
 
   & .kirk-tab-container {
-    margin-left: ${space.l};
     display: flex;
     justify-content: center;
     align-items: last baseline;
   }
 
-  &.kirk-tabs-fixed .kirk-tablist {
-    overflow: initial;
-  }
-
-  &.kirk-tabs-fixed .kirk-tab-container {
-    margin-left: 0;
-    flex-grow: 1;
-    text-align: center;
-  }
-
-  &.kirk-tabs-fixed .kirk-tab {
+  & .kirk-tabs-fixed .kirk-tab {
     white-space: normal;
   }
 

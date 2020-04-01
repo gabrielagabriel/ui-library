@@ -6,15 +6,15 @@ import { action } from '@storybook/addon-actions'
 import Button from 'button'
 import CarpoolIcon from 'icon/carpoolIcon'
 import BusIcon from 'icon/busIcon'
-
+import Section from 'layout/section/baseSection'
 import Tabs, { TabStatus } from 'tabs'
 
-const stories = storiesOf('Tabs', module)
+const stories = storiesOf('Widgets|Tabs', module)
 stories.addDecorator(withKnobs)
 
 const panels = [
-  <div style={{ padding: 30 }}>Content for first tab</div>,
-  <div style={{ padding: 30 }}>
+  <div>Content for first tab</div>,
+  <div>
     <Button
       onClick={() => {
         action('onClickButton')
@@ -23,14 +23,13 @@ const panels = [
       Button inside panel 2.
     </Button>
   </div>,
-  <div style={{ padding: 30 }}>Content for tab3</div>,
+  <div>Content for tab3</div>,
 ]
 
 stories.add('default', () => {
   const defaultTabsConfig = {
     activeTabId: 'tab1',
     status: select('status', TabStatus, TabStatus.SCROLLABLE),
-    isWrapped: boolean('isWrapped', false),
     tabs: [
       {
         id: 'tab1',
@@ -54,13 +53,14 @@ stories.add('default', () => {
     ],
   }
   return (
-    <Tabs
-      onChange={action('onChange')}
-      tabs={defaultTabsConfig.tabs}
-      activeTabId={defaultTabsConfig.activeTabId}
-      status={defaultTabsConfig.status}
-      isWrapped={defaultTabsConfig.isWrapped}
-    />
+    <Section>
+      <Tabs
+        onChange={action('onChange')}
+        tabs={defaultTabsConfig.tabs}
+        activeTabId={defaultTabsConfig.activeTabId}
+        status={defaultTabsConfig.status}
+      />
+    </Section>
   )
 })
 
@@ -68,7 +68,6 @@ stories.add('with icons', () => {
   const iconTabsConfig = {
     activeTabId: 'tab1',
     status: select('status', TabStatus, TabStatus.FIXED),
-    isWrapped: boolean('isWrapped', false),
     tabs: [
       {
         id: 'tab1',
@@ -104,12 +103,13 @@ stories.add('with icons', () => {
     ],
   }
   return (
-    <Tabs
-      onChange={action('onChange')}
-      tabs={iconTabsConfig.tabs}
-      activeTabId={iconTabsConfig.activeTabId}
-      status={iconTabsConfig.status}
-      isWrapped={iconTabsConfig.isWrapped}
-    />
+    <Section>
+      <Tabs
+        onChange={action('onChange')}
+        tabs={iconTabsConfig.tabs}
+        activeTabId={iconTabsConfig.activeTabId}
+        status={iconTabsConfig.status}
+      />
+    </Section>
   )
 })

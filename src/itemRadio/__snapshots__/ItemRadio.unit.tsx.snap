@@ -106,6 +106,10 @@ exports[`ItemRadio Should display a CircleIcon with an innerDisc when the input 
   background: #EDEDED;
 }
 
+.c0.kirk-item--hideHoverBackground.kirk-item--clickable:hover {
+  background: none;
+}
+
 a.c0 {
   background: none;
   -webkit-text-decoration: none;
@@ -123,10 +127,14 @@ button.c0 {
   text-align: left;
   width: 100%;
   font-family: inherit;
-  outline: none;
   background-color: transparent;
   -webkit-tap-highlight-color: rgba(221,221,221,.4);
   -webkit-touch-callout: none;
+}
+
+button:active.c0,
+button:hover.c0 {
+  outline: none;
 }
 
 .c0:disabled {
@@ -402,6 +410,10 @@ exports[`ItemRadio Should display a Loader when the component is in loading stat
   background: #EDEDED;
 }
 
+.c0.kirk-item--hideHoverBackground.kirk-item--clickable:hover {
+  background: none;
+}
+
 a.c0 {
   background: none;
   -webkit-text-decoration: none;
@@ -419,10 +431,14 @@ button.c0 {
   text-align: left;
   width: 100%;
   font-family: inherit;
-  outline: none;
   background-color: transparent;
   -webkit-tap-highlight-color: rgba(221,221,221,.4);
   -webkit-touch-callout: none;
+}
+
+button:active.c0,
+button:hover.c0 {
+  outline: none;
 }
 
 .c0:disabled {
@@ -732,6 +748,10 @@ exports[`ItemRadio Should forward its props to the Item component 1`] = `
   background: #EDEDED;
 }
 
+.c0.kirk-item--hideHoverBackground.kirk-item--clickable:hover {
+  background: none;
+}
+
 a.c0 {
   background: none;
   -webkit-text-decoration: none;
@@ -749,10 +769,14 @@ button.c0 {
   text-align: left;
   width: 100%;
   font-family: inherit;
-  outline: none;
   background-color: transparent;
   -webkit-tap-highlight-color: rgba(221,221,221,.4);
   -webkit-touch-callout: none;
+}
+
+button:active.c0,
+button:hover.c0 {
+  outline: none;
 }
 
 .c0:disabled {

@@ -2,6 +2,7 @@ import React from 'react'
 import cc from 'classcat'
 
 import { color } from '_utils/branding'
+import { A11yProps, pickA11yProps } from '_utils/interfaces'
 import Text, { TextTagType, TextDisplayType } from 'text'
 import ChevronIcon from 'icon/chevronIcon'
 import Button from 'button/Button'
@@ -12,7 +13,7 @@ export enum ItemStatus {
   CHECKED = 'checked',
 }
 
-export interface ItemProps {
+export interface ItemProps extends A11yProps {
   readonly chevron?: boolean
   readonly className?: Classcat.Class
   readonly href?: string | JSX.Element
@@ -29,9 +30,10 @@ export interface ItemProps {
   readonly leftBodyAnnotationDisplay?: TextDisplayType
   readonly leftBodyAnnotationColor?: string
   readonly leftAddon?: React.ReactNode
-  readonly rightTitle?: string
+  readonly rightTitle?: string | JSX.Element
   readonly rightTitleDisplay?: TextDisplayType
   readonly rightTitleStrikeThrough?: boolean
+  readonly rightTitleAriaLabel?: string
   readonly rightTitleColor?: string
   readonly rightBody?: string | React.ReactNode
   readonly rightBodyDisplay?: TextDisplayType
@@ -43,40 +45,45 @@ export interface ItemProps {
   readonly onBlur?: (event: React.FocusEventHandler<HTMLElement>) => void
   readonly onFocus?: (event: React.FocusEventHandler<HTMLElement>) => void
   readonly onMouseDown?: (event: React.MouseEvent<HTMLElement>) => void
+  readonly hideHoverBackground?: boolean
 }
 
-const Item = ({
-  chevron,
-  className,
-  href,
-  onClick,
-  onBlur,
-  onFocus,
-  onMouseDown,
-  highlighted,
-  isClickable,
-  leftTitle,
-  leftTitleButtonAddon,
-  rightTitleStrikeThrough,
-  leftTitleDisplay = TextDisplayType.TITLE,
-  leftTitleColor,
-  leftBody,
-  leftBodyDisplay = TextDisplayType.BODY,
-  leftBodyColor,
-  leftBodyAnnotation,
-  leftBodyAnnotationDisplay,
-  leftBodyAnnotationColor,
-  leftAddon,
-  rightTitle,
-  rightTitleDisplay = TextDisplayType.TITLE,
-  rightTitleColor,
-  rightBody,
-  rightBodyDisplay = TextDisplayType.BODY,
-  rightBodyColor,
-  rightAddon,
-  tag = <div />,
-  ariaLabel,
-}: ItemProps) => {
+const Item = (props: ItemProps) => {
+  const {
+    chevron,
+    className,
+    href,
+    onClick,
+    onBlur,
+    onFocus,
+    onMouseDown,
+    highlighted,
+    isClickable,
+    leftTitle,
+    leftTitleButtonAddon,
+    rightTitleStrikeThrough,
+    rightTitleAriaLabel,
+    leftTitleDisplay = TextDisplayType.TITLE,
+    leftTitleColor,
+    leftBody,
+    leftBodyDisplay = TextDisplayType.BODY,
+    leftBodyColor,
+    leftBodyAnnotation,
+    leftBodyAnnotationDisplay,
+    leftBodyAnnotationColor,
+    leftAddon,
+    rightTitle,
+    rightTitleDisplay = TextDisplayType.TITLE,
+    rightTitleColor,
+    rightBody,
+    rightBodyDisplay = TextDisplayType.BODY,
+    rightBodyColor,
+    rightAddon,
+    tag = <div />,
+    ariaLabel,
+    hideHoverBackground = false,
+  } = props
+  const a11yAttrs = pickA11yProps<ItemProps>(props)
   let Tag = tag.type
   let tagProps = tag.props
   if (href) {
@@ -102,9 +109,11 @@ const Item = ({
         {
           'kirk-item--highlighted': highlighted,
           'kirk-item--clickable': isClickable,
+          'kirk-item--hideHoverBackground': hideHoverBackground,
         },
         className,
       ])}
+      {...a11yAttrs}
       aria-label={ariaLabel}
     >
       {leftAddon && <div className="kirk-item-leftAddon">{leftAddon}</div>}
@@ -147,14 +156,15 @@ const Item = ({
           {rightTitle && (
             <Text
               className={cc([
+                'kirk-item-title',
                 {
-                  'kirk-item-title': rightBody,
                   'kirk-item--strikethrough': rightTitleStrikeThrough,
                 },
               ])}
               display={rightTitleDisplay}
               textColor={rightTitleColor}
               tag={TextTagType.DIV}
+              ariaLabel={rightTitleAriaLabel}
             >
               {rightTitle}
             </Text>

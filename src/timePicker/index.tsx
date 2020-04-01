@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { color, inputBorderSize, font } from '_utils/branding'
+import { color, inputBorderSize, font, space } from '_utils/branding'
 
 import TimePicker from './TimePicker'
 
@@ -60,6 +60,7 @@ export const StyledTimePicker = styled(TimePicker)`
 
   & > select,
   & > select:focus {
+    z-index: 1; /* Needs to be above ::after so the arrow symbol appears clickable */
     position: absolute;
     top: 0;
     left: 0;
@@ -77,6 +78,14 @@ export const StyledTimePicker = styled(TimePicker)`
     display: inline-block;
     padding-top: 6px;
     vertical-align: middle;
+  }
+
+  &.small {
+    font-size: ${font.xl.size};
+
+    & > time {
+      padding-top: ${space.s};
+    }
   }
 `
 

@@ -106,6 +106,10 @@ exports[`ItemsList Should render an unordered list 1`] = `
   background: #EDEDED;
 }
 
+.c1.kirk-item--hideHoverBackground.kirk-item--clickable:hover {
+  background: none;
+}
+
 a.c1 {
   background: none;
   -webkit-text-decoration: none;
@@ -123,10 +127,14 @@ button.c1 {
   text-align: left;
   width: 100%;
   font-family: inherit;
-  outline: none;
   background-color: transparent;
   -webkit-tap-highlight-color: rgba(221,221,221,.4);
   -webkit-touch-callout: none;
+}
+
+button:active.c1,
+button:hover.c1 {
+  outline: none;
 }
 
 .c1:disabled {
@@ -477,6 +485,10 @@ exports[`ItemsList Should render an unordered list with some separators 1`] = `
   background: #EDEDED;
 }
 
+.c1.kirk-item--hideHoverBackground.kirk-item--clickable:hover {
+  background: none;
+}
+
 a.c1 {
   background: none;
   -webkit-text-decoration: none;
@@ -494,10 +506,14 @@ button.c1 {
   text-align: left;
   width: 100%;
   font-family: inherit;
-  outline: none;
   background-color: transparent;
   -webkit-tap-highlight-color: rgba(221,221,221,.4);
   -webkit-touch-callout: none;
+}
+
+button:active.c1,
+button:hover.c1 {
+  outline: none;
 }
 
 .c1:disabled {
@@ -848,6 +864,10 @@ exports[`ItemsList Should render an unordered list with the separators classname
   background: #EDEDED;
 }
 
+.c1.kirk-item--hideHoverBackground.kirk-item--clickable:hover {
+  background: none;
+}
+
 a.c1 {
   background: none;
   -webkit-text-decoration: none;
@@ -865,10 +885,14 @@ button.c1 {
   text-align: left;
   width: 100%;
   font-family: inherit;
-  outline: none;
   background-color: transparent;
   -webkit-tap-highlight-color: rgba(221,221,221,.4);
   -webkit-touch-callout: none;
+}
+
+button:active.c1,
+button:hover.c1 {
+  outline: none;
 }
 
 .c1:disabled {

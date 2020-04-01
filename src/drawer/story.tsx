@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { storiesOf } from '@storybook/react'
 import { withKnobs, text } from '@storybook/addon-knobs'
-import Menu from 'menu'
+
 import ItemChoice, { ItemChoiceStatus } from 'itemChoice'
-import { BellIcon, BubbleIcon, HomeIcon, NewspaperIcon, TicketIcon } from 'icon'
+
+import BellIcon from 'icon/bellIcon'
+import BubbleIcon from 'icon/bubbleIcon'
+import HomeIcon from 'icon/homeIcon'
+import NewspaperIcon from 'icon/newspaperIcon'
+import TicketIcon from 'icon/ticketIcon'
+
+import Menu from 'menu'
 import Drawer from 'drawer'
 import HamburgerButton from 'hamburgerButton'
 
-const stories = storiesOf('Drawer', module)
+const stories = storiesOf('Widgets|Drawer', module)
 stories.addDecorator(withKnobs)
 
 class DrawerDemo extends Component {

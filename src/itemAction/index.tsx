@@ -3,9 +3,10 @@ import cc from 'classcat'
 
 import Loader from 'loader/Loader'
 import Item, { ItemStatus } from '_utils/item'
+import { A11yProps, pickA11yProps } from '_utils/interfaces'
 import prefix from '_utils'
 
-export interface ItemActionProps {
+export interface ItemActionProps extends A11yProps {
   readonly highlighted?: boolean
   readonly tag?: JSX.Element
   readonly className?: Classcat.Class
@@ -19,6 +20,7 @@ export interface ItemActionProps {
   readonly onFocus?: (event: React.FocusEventHandler<HTMLElement>) => void
   readonly onMouseDown?: (event: React.MouseEvent<HTMLElement>) => void
   readonly onDoneAnimationEnd?: () => void
+  readonly hideHoverBackground?: boolean
 }
 
 class ItemAction extends PureComponent<ItemActionProps> {
@@ -45,7 +47,9 @@ class ItemAction extends PureComponent<ItemActionProps> {
       onFocus,
       onMouseDown,
       onDoneAnimationEnd,
+      hideHoverBackground = false,
     } = this.props
+    const a11yAttrs = pickA11yProps<ItemActionProps>(this.props)
 
     let rightAddon
 
@@ -86,6 +90,8 @@ class ItemAction extends PureComponent<ItemActionProps> {
         onMouseDown={onMouseDown}
         tag={tag}
         isClickable
+        hideHoverBackground={hideHoverBackground}
+        {...a11yAttrs}
       />
     )
   }

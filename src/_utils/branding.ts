@@ -100,8 +100,13 @@ export const delay = {
 export const componentSizes = {
   timeWidth: '48px',
   buttonIconSize: '48px',
-  wrapper: '662px',
-  largeWrapper: '1016px',
+  bulletSize: '10px',
+  bulletSizeSmall: '8px',
+  bulletSizeMap: '18px',
+  roadWidth: '4px',
+  smallSectionWidth: '662px',
+  largeSectionWidth: '1016px',
+  modalTopPadding: '70px',
 }
 
 export const modalSize = {
@@ -113,6 +118,8 @@ export const modalSize = {
 export const shadow: defaultBranding = {
   default: '0 2px 4px rgba(0, 0, 0, .3)',
   icon: '0 0 2px rgba(0, 0, 0, .3)',
+  card: '0 1pt 4pt rgba(0, 0, 0, 0.16), 0 2pt 8pt rgba(0, 0, 0, 0.08)',
+  cardHover: '0 2pt 8pt rgba(0, 0, 0, 0.08), 0 2pt 16pt rgba(0, 0, 0, 0.08)',
 }
 
 export const inputBorderSize = {
@@ -120,8 +127,11 @@ export const inputBorderSize = {
   focus: '3px',
 }
 
+const smallBreakPointThreshold = '800px'
 export const responsiveBreakpoints = {
-  small: '800px',
+  small: smallBreakPointThreshold,
+  isMediaLarge: `min-width: ${smallBreakPointThreshold}`,
+  isMediaSmall: `max-width: ${smallBreakPointThreshold}`,
 }
 
 export const color: Color = {

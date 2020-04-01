@@ -8,6 +8,7 @@ import ComfortIcon from 'icon/comfortIcon'
 import LightningIcon from 'icon/lightningIcon'
 import LadyIcon from 'icon/ladyIcon'
 import WarningIcon from 'icon/warningIcon'
+import Card from '_utils/card'
 
 const mockedProps = {
   href: '#',
@@ -52,6 +53,12 @@ const createPassengers = count => {
 const Div = () => <div className="divTest" />
 
 describe('TripCard component', () => {
+  it('Should wrap the content in a Card', () => {
+    const tripCard = shallow(<TripCard {...mockedProps} />)
+
+    expect(tripCard.first().type()).toBe(Card)
+  })
+
   it('Should have the base class and no aria attribute', () => {
     const tripCard = shallow(<TripCard {...mockedProps} />)
     expect(tripCard.hasClass('kirk-tripCard')).toBe(true)
@@ -72,13 +79,6 @@ describe('TripCard component', () => {
     const tripCard = mount(<TripCard {...mockedProps} href={<Div />} />)
     expect(tripCard.find(Div).exists()).toBe(true)
     expect(tripCard.find('.divTest').exists()).toBe(true)
-  })
-
-  it('Should have the highlighted modifier display the highlighted string instead of flags', () => {
-    const tripCard = shallow(<TripCard {...mockedProps} highlighted="Test string" />)
-    expect(tripCard.find('.kirk-tripCard--highlighted').exists()).toBe(true)
-    expect(tripCard.find('.kirk-tripCard-flags').exists()).toBe(false)
-    expect(tripCard.find('.kirk-tripCard-topText').exists()).toBe(true)
   })
 
   it('Should have only the Ladies Only icon', () => {

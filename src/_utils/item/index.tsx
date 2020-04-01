@@ -19,6 +19,10 @@ const StyledItem = styled(Item)`
     background: ${color.hover};
   }
 
+  &.kirk-item--hideHoverBackground.kirk-item--clickable:hover {
+    background: none;
+  }
+
   a& {
     background: none;
     text-decoration: none;
@@ -32,10 +36,14 @@ const StyledItem = styled(Item)`
     text-align: left;
     width: 100%;
     font-family: inherit;
-    outline: none;
     background-color: transparent;
     -webkit-tap-highlight-color: ${color.tapHighlight};
     -webkit-touch-callout: none;
+  }
+
+  button:active&,
+  button:hover& {
+    outline: none;
   }
 
   &:disabled {

@@ -4,6 +4,7 @@ import { shallow, mount } from 'enzyme'
 
 import Item from './Item'
 import Button from 'button'
+import Text from 'text'
 import StyledItem from './index'
 import ClockIcon from 'icon/clockIcon'
 import ChevronIcon from 'icon/chevronIcon'
@@ -43,6 +44,14 @@ describe('Item', () => {
   it('Should be highlighted', () => {
     const wrapper = shallow(<Item highlighted />)
     expect(wrapper.hasClass('kirk-item--highlighted')).toBe(true)
+  })
+
+  it('Should deactivate background hover color properly', () => {
+    const wrapperWithHoverBackground = shallow(<Item />)
+    expect(wrapperWithHoverBackground.hasClass('kirk-item--hideHoverBackground')).toBe(false)
+
+    const wrapperWithoutHoverBackground = shallow(<Item hideHoverBackground />)
+    expect(wrapperWithoutHoverBackground.hasClass('kirk-item--hideHoverBackground')).toBe(true)
   })
 
   it('Should trigger click on button info', () => {
@@ -135,5 +144,12 @@ describe('Item', () => {
   it("Shouldn't display strickthrough right title", () => {
     const wrapper = mount(<Item rightTitleStrikeThrough />)
     expect(wrapper.find('.kirk-item--strikethrough').exists()).toBe(false)
+  })
+
+  it('Should display aria-label on right title', () => {
+    const wrapper = mount(
+      <Item rightTitle="Right title" rightTitleAriaLabel="Right title aria-label" />,
+    )
+    expect(wrapper.find(Text).prop('ariaLabel')).toBe('Right title aria-label')
   })
 })

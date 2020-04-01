@@ -18,6 +18,7 @@ import ChevronIcon from './chevronIcon'
 import ChildIcon from './child'
 import CircleIcon from './circleIcon'
 import ClockIcon from './clockIcon'
+import ClockMapIcon from './clockMapIcon'
 import CoinIcon from './coinIcon'
 import ComfortIcon from './comfortIcon'
 import ComfortSeatIcon from './comfortSeat'
@@ -50,6 +51,7 @@ import LegRestIcon from './legRest'
 import LegRoomIcon from './legRoom'
 import LightIcon from './light'
 import LightningIcon from './lightningIcon'
+import LockIcon from './lockIcon'
 import MagazineIcon from './magazine'
 import MailIcon from './mailIcon'
 import MapIcon from './mapIcon'
@@ -73,6 +75,7 @@ import QrCodeIcon from './qrCode'
 import QuestionIcon from './questionIcon'
 import QuietIcon from './quiet'
 import RecliningSeatIcon from './recliningSeat'
+import RotateIcon from './rotateIcon'
 import SearchIcon from './searchIcon'
 import SeatBeltIcon from './seatBelt'
 import SeatSlidingIcon from './seatSliding'
@@ -97,6 +100,8 @@ import WcIcon from './wc'
 import WheelchairIcon from './wheelchair'
 import WifiIcon from './wifi'
 import YoutubeIcon from './youtubeIcon'
+import ZoomInIcon from './zoomIn'
+import ZoomOutIcon from './zoomOut'
 
 export {
   AirConditioningIcon,
@@ -119,6 +124,7 @@ export {
   ChildIcon,
   CircleIcon,
   ClockIcon,
+  ClockMapIcon,
   CoinIcon,
   ComfortIcon,
   ComfortSeatIcon,
@@ -151,6 +157,7 @@ export {
   LegRoomIcon,
   LightIcon,
   LightningIcon,
+  LockIcon,
   MagazineIcon,
   MailIcon,
   MapIcon,
@@ -174,6 +181,7 @@ export {
   QuestionIcon,
   QuietIcon,
   RecliningSeatIcon,
+  RotateIcon,
   SearchIcon,
   SeatBeltIcon,
   SeatSlidingIcon,
@@ -198,4 +206,6 @@ export {
   WheelchairIcon,
   WifiIcon,
   YoutubeIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
 }

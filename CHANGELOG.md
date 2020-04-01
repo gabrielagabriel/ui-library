@@ -1,8 +1,182 @@
 # Unreleased
 
+- **[FIX]** Fix `Profile` medium size rendering
+- **[FIX]** Fix `TextDisplay1` scale
+- **[UPDATE]** Import `icons` as default instead of named export for a better code splitting
 - [...]
 
+# v24.1.0 (25/03/2020)
+
+- **[NEW]** Add `Card` util component, add `QrCard` component and use `Card` in `TripCard`
+- **[NEW]** Add `Hint` component
+- **[UPDATE]** Add explicit support for generic aria attributes on `Item`-like components and `Button`
+- **[FIX]** Fix `MainContent` height when inside a `Modal` with close button
+- **[FIX]** Fix `MediaSection` display inside a `Modal`
+
+# v24.0.0 (23/03/2020)
+
+- **[BREAKING CHANGE]** Improve & rename `TripSection` as `CardsSection` to be able to handle `TripCard` and `QrCard` elements
+
+# v23.2.1 (23/03/2020)
+
+- **[NEW]** Add `Card` util component, add `QrCard` component and use `Card` in `TripCard`
+- **[FIX]** Fix `Item` Button focus visual indicator
+
+# v23.2.0 (20/03/2020)
+
+- **[NEW]** Add `ZoomIn` and `ZoomOut` icons
+- **[FIX]** Fix story for `Review` widget
+- **[FIX]** Add `small` prop to `TimePicker` component
+
+# v23.1.0 (13/03/2020)
+
+- **[NEW]** Add `MediaSection`, a fullscreen without spacing on small devices section
+- **[NEW]** Add new `Review` widget.
+
+# v23.0.0 (12/03/2020)
+
+- **[FIX]** Remove horizontal padding override in `MessagingSummaryItem`
+- **[BREAKING CHANGE]** Remove `highlighted` prop from `TripCard` component.
+
+# v22.4.0 (11/03/2020)
+
+- **[NEW]** Add an `ItemsSection` to display two `ItemInfo` in a row
+- **[UPDATE]** Improve `TripCard` layout to allow text to truncate.
+- **[FIX]** Add vertical padding to `Paragraph`
+- **[FIX]** Fix padding for title in `ColumnedContentSection`
+- **[FIX]** Update `Profile` component type for `info` prop (`string | JSX.Element`)
+- **[NEW]** `MediaSizeProvider` component
+
+# v22.3.1 (10/03/2020)
+
+- **[FIX]** Set explicit vertical margins on `ColumnedContentSection` main title.
+
+# v22.3.0 (09/03/2020)
+
+- **[UPDATE]** Add ariaLabel attribute to `ItemInfo` and `Item`.
+- **[FIX]** Improve a11y on `Stepper` for keyboard navigation and screen readers
+- **[NEW]** New typographic components
+  --`TextDisplay1`
+  --`TextDisplay2`
+  --`TextBody`
+  --`TextBodyStrong`
+  --`TextCaption`
+  --`TextSubHeader`
+  --`TextSubHeaderStrong`
+  --`TextTitle`
+  --`TextTitleStrong`
+
+# v22.2.0 (06/03/2020)
+
+- **[UPDATE]** Add autoComplete attribute on `SelectField` and `PhoneField` components.
+- **[UPDATE]** Change autoComplete type on `TextField` to allow other values than `on` and `off`.
+- **[FIX]** Fix `TripsSection` left scroll padding issue
+- **[FIX]** Fix `Datepicker` previous month selection on vertical mode if selected date is far in the future
+
+# v22.1.1 (28/02/2020)
+
+- **[FIX]** Fix `Stepper` button visual issue
+
+# v22.1.0 (27/02/2020)
+
+- **[NEW]** Add `IllustratedSection` component
+- **[NEW]** Add `LockIcon`
+- **[UPDATE]** Fix `Button` with `Icon` display case
+
+# v22.0.0 (26/02/2020)
+
+- **[NEW]** Add `SearchRecap` component
+- **[BREAKING CHANGE]** Add `kirk-` prefix to classNames in `UneditableTextField`
+- **[UPDATE]** Storybook dependency
+- **[FIX]** Fix unclickable arrow in `TimePicker`
+- **[NEW]** `MainContent` and children components to handle layout vertical composition
+
+# v21.2.0 (20/02/2020)
+
+- **[NEW]** Introduce `LayoutNormalizer` with legacy global layout overrides. Not activated by default.
+- **[NEW]** Add Bus Ride Details story page
+- **[NEW]** Implement `ColumnedContentSection` widget.
+- **[UPDATE]** Use semantic html (ul/li) for `Columns` and `Column` widgets.
+- **[UPDATE]** Add new `Your rides`, `Ride history` and `Search result` pages
+- **[UPDATE]** Add new `Your rides`
+- `Ride history` and `Search result` pages
+- **[UPDATE]** Make price props on `TripCard` non-mandatory
+
+# v21.1.0 (19/02/2020)
+
+- **[UPDATE]** Update `TheVoice` component to be applied on dark backgrounds. `ConfirmationModal` and `SuccessModal` now use `TheVoice` component.
+- **[FIX]** Removed `ItineraryCollapsible` useless css rules
+- **[FIX]** Restore multiline text on `Tabs` when `fixed`
+
+# v21.0.1 (17/02/2020)
+
+- **[FIX]** Fix `RotateIcon` viewbox
+
+# v21.0.0 (14/02/2020)
+
+- **[NEW]** Implement `Paragraph` widget
+- **[BREAKING CHANGE]** `Tabs` and `TabsSection` layout/spacing overhaul
+
+# v20.1.2 (12/02/2020)
+
+- **[FIX]** Fix text alignment and image covering for `MediaContentSection`
+
+# v20.1.1 (12/02/2020)
+
+- **[FIX]** `Itinerary` subLabel rendered in case of stopovers
+- **[FIX]** Add border radius, article tag name, proper image position and title alignment for `MediaContentSection` section.
+
+# v20.1.0 (12/02/2020)
+
+- **[NEW]** Allow to disable the backgroundhover color for `ItemAction`
+- **[UPDATE]** Create new `MediaContentSection` section based on `Columns` and `Column` private components.
+- **[UPDATE]** Move more rendering logic to `HighlightSection`
+
+# v20.0.2 (11/02/2020)
+
+- **[FIX]** Fix `Itinerary` margin with only one stopover and no time
+
+# v20.0.1 (11/02/2020)
+
+- **[UPDATE]** `Itinerary` displays `subLabel` instead of `mainLabel` when collapsed
+
+# v20.0.0 (10/02/2020)
+
+- **[BREAKING CHANGE]** Replace `TopTripCardList` component with `TripsSection` section.
+- **[UPDATE]** Add new Pages leftnav category and a few messaging & ridedetails pages
+- **[BREAKING CHANGE]** Fix background/content classname props on `BaseSection` and `HighlightSection`
+- **[NEW]** Add `ariaLabel` prop to `Text`
+- **[NEW]** Add `rightTitleAriaLabel` prop to `Item`
+- **[NEW]** Add `dataAriaLabel` prop to `ItemData`
+
+# v19.1.1 (07/02/2020)
+
+- **[UPDATE]** Itinerary is no longer collapsed when we have only one stopover
+
+# v19.1.0 (07/02/2020)
+
+- **[NEW]** Add `RotateIcon`
+- **[FIX]** Fix background for `HighlightSection`
+- **[UPDATE]** Rename left nav widget section from 'Others' to 'Widgets'
+- **[NEW]** Create new `TabsSection` (a full-width `Tabs` section)
+- **[UPDATE]** Fix children type for `BaseSection` to allow list of React elements.
+- **[UPDATE]** Improve widgets story visual display (by wrapping in Section)
+- **[FIX]** Fix broken `Datepicker` stories
+
+# v19.0.0 (06/02/2020)
+
+- **[NEW]** Added `BaseSection`, the core section for layouts.
+- **[NEW]** Added `HighlightSection`, a specialized section with a green background.
+- **[BREAKING CHANGE]** Rename our section branding sizes to use better names.
+
+# v18.3.0 (04/02/2020)
+
+- **[UPDATE]** Refactored `Itinerary` to use `ItineraryLocation` and `ItineraryCollapsible`
+- **[UPDATE]** `Bullet` component size is no longer based on 'content-box' but 'border-box'
+- **[NEW]** Added `ClockMapIcon`
+
 # v18.2.0 (03/02/2020)
+
 - **[NEW]** Create new `HeroSection` section.
 
 # v18.1.0 (30/01/2020)

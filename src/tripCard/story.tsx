@@ -2,12 +2,12 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { boolean, text, withKnobs, number } from '@storybook/addon-knobs'
-
+import Section from 'layout/section/baseSection'
 import WarningIcon from 'icon/warningIcon'
 import TripCard from './index'
 import specs from './specifications/index.md'
 
-const stories = storiesOf('TripCard', module)
+const stories = storiesOf('Widgets|TripCard', module)
 stories.addDecorator(withKnobs)
 
 const tripCardConfig = () => ({
@@ -38,7 +38,6 @@ const tripCardConfig = () => ({
     maxTwo: boolean('Max 2 in the back', true),
     autoApproval: boolean('Auto approval', true),
   },
-  highlighted: boolean('Top of search', false) ? 'Closest match' : '',
   metaUrl: text('Meta URL'),
   statusInformation: boolean('Status information', true)
     ? {
@@ -54,14 +53,16 @@ const tripCardConfig = () => ({
 stories.add(
   'with driver',
   () => (
-    <TripCard
-      {...tripCardConfig()}
-      driver={{
-        avatarUrl: '//placehold.it/500x500',
-        firstName: text('Driver name', 'Jane'),
-        rating: text('Driver Rating', '4.9'),
-      }}
-    />
+    <Section>
+      <TripCard
+        {...tripCardConfig()}
+        driver={{
+          avatarUrl: '//placehold.it/500x500',
+          firstName: text('Driver name', 'Jane'),
+          rating: text('Driver Rating', '4.9'),
+        }}
+      />
+    </Section>
   ),
   {
     readme: { content: specs },
@@ -69,11 +70,13 @@ stories.add(
 )
 
 stories.add('with passengers', () => (
-  <TripCard
-    {...tripCardConfig()}
-    passengers={Array(number('passengers count', 3)).fill({
-      avatarUrl: '//placehold.it/500x500',
-      firstName: 'Jane',
-    })}
-  />
+  <Section>
+    <TripCard
+      {...tripCardConfig()}
+      passengers={Array(number('passengers count', 3)).fill({
+        avatarUrl: '//placehold.it/500x500',
+        firstName: 'Jane',
+      })}
+    />
+  </Section>
 ))

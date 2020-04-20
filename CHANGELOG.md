@@ -1,9 +1,50 @@
 # Unreleased
 
+- [...]
+
+# v29.0.0 (20/04/2020)
+
+- **[BREAKING CHANGE]** Resposive `SuccessModal` (no more `size` prop)
+- **[UPDATE]** Update `jsx-a11y` linter autofocus rule
+
+# v28.0.0 (16/04/2020)
+
+- **[UPDATE]** Add `autocompleteFrom` & `autocompleteTo` props to `SearchForm`
+- **[UPDATE]** Add new layoutMode props to `Loader` and add support for `block` mode.
+- **[BREAKING CHANGE]** Replace autocompleteProps to be a function renderAutocomplete in search form
+- **[FIX]** Small UI fixes on `SearchForm`
+
+# v27.0.0 (09/04/2020)
+
+- **[UPDATE]** Add `toMonth` parameter to `DatePicker` and set it to 1 year by default
+- **[BREAKING CHANGE]** `MediaSizeProvider` filename renamed
+
+# v26.0.1 (08/04/2020)
+
+- **[FIX]** Fix `Item` Text display
+
+# v26.0.0 (06/04/2020)
+
+- **[FIX]** Remove DOM Warning on `MainContent` component
+- **[FIX]** Fix markup `Item` tag label by replacing `div` children with `span`
+- **[BREAKING CHANGE]** Import `icons` as default instead of named export for a better code splitting
+- **[UPDATE]** Make `Review` more semantic with proper HTML and Review/Rating microdata
+- **[FIX]** Fix clicking oustide of `SearchForm` closes overlays
+- **[UPDATE]** Use `Divider` in `ItemList` instead of custom CSS
+- **[UPDATE]** Remove legacy style from Autocomplete
+
+# v25.0.0 (02/04/2020)
+
+- **[BREAKING CHANGE]** Use `title` instead of `children` prop in `Stepper`
+- **[NEW]** Add `CalendarIcon` component
+- **[NEW]** Add `SearchForm` component
+
+# v24.1.1 (01/04/2020)
+
 - **[FIX]** Fix `Profile` medium size rendering
 - **[FIX]** Fix `TextDisplay1` scale
 - **[UPDATE]** Import `icons` as default instead of named export for a better code splitting
-- [...]
+- **[UPDATE]** Adjust `jsx-a11y` linter settings to recommended
 
 # v24.1.0 (25/03/2020)
 

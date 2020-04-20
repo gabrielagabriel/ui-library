@@ -152,6 +152,10 @@ button:hover.c0 {
   text-align: right;
 }
 
+.c0 .kirk-text {
+  display: block;
+}
+
 .c0 .kirk-item-title--withBody {
   margin-bottom: 4px;
 }
@@ -233,21 +237,21 @@ button:hover.c0 {
 <label
   className="kirk-item kirk-item--clickable kirk-item-radio custom-class-name c0"
 >
-  <div
+  <span
     className="kirk-item-leftText"
   >
-    <div
+    <span
       className="kirk-text kirk-text-title c1"
     >
       Label title
-    </div>
-    <div
+    </span>
+    <span
       className="kirk-text kirk-text-body kirk-item-body c1"
     >
       Label
-    </div>
-  </div>
-  <div
+    </span>
+  </span>
+  <span
     className="kirk-item-rightText"
   >
     <div
@@ -260,8 +264,8 @@ button:hover.c0 {
     >
       Data info
     </div>
-  </div>
-  <div
+  </span>
+  <span
     className="kirk-item-rightAddon"
   >
     <input
@@ -300,7 +304,7 @@ button:hover.c0 {
         r="18"
       />
     </svg>
-  </div>
+  </span>
 </label>
 `;
 
@@ -456,6 +460,10 @@ button:hover.c0 {
   text-align: right;
 }
 
+.c0 .kirk-text {
+  display: block;
+}
+
 .c0 .kirk-item-title--withBody {
   margin-bottom: 4px;
 }
@@ -534,7 +542,11 @@ button:hover.c0 {
   stroke-width: 0;
 }
 
-.c2 {
+.c2.kirk-loader--inline {
+  display: inline-block;
+}
+
+.c2.kirk-loader--fullScreen {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -547,9 +559,6 @@ button:hover.c0 {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-
-.c2.kirk-loader--fullScreen {
   position: fixed;
   top: 0;
   left: 0;
@@ -559,7 +568,32 @@ button:hover.c0 {
   z-index: 4;
 }
 
-.c2.kirk-loader--done {
+.c2.kirk-loader--block {
+  display: block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.c2 .kirk-loader--done {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   background-color: #5DD167;
   color: #FFF;
   border-radius: 50%;
@@ -568,21 +602,21 @@ button:hover.c0 {
 <label
   className="kirk-item kirk-item--clickable kirk-item-radio custom-class-name c0"
 >
-  <div
+  <span
     className="kirk-item-leftText"
   >
-    <div
+    <span
       className="kirk-text kirk-text-title c1"
     >
       Label title
-    </div>
-    <div
+    </span>
+    <span
       className="kirk-text kirk-text-body kirk-item-body c1"
     >
       Label
-    </div>
-  </div>
-  <div
+    </span>
+  </span>
+  <span
     className="kirk-item-rightText"
   >
     <div
@@ -595,8 +629,8 @@ button:hover.c0 {
     >
       Data info
     </div>
-  </div>
-  <div
+  </span>
+  <span
     className="kirk-item-rightAddon"
   >
     <input
@@ -611,34 +645,38 @@ button:hover.c0 {
       value={0}
     />
     <div
-      className="kirk-loader c2"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
+      className="c2 kirk-loader--inline"
     >
-      <svg
-        aria-hidden={true}
-        className="kirk-icon kirk-icon-circle spinning c3 c4"
-        fill="#5DD167"
-        height={24}
-        viewBox="0 0 66 66"
-        width={24}
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        className=""
+        style={
+          Object {
+            "height": "24px",
+            "width": "24px",
+          }
+        }
       >
-        
-        <circle
-          cx="33"
-          cy="33"
-          fill="none"
-          r="30"
-          stroke="#5DD167"
-        />
-      </svg>
+        <svg
+          aria-hidden={true}
+          className="kirk-icon kirk-icon-circle spinning c3 c4"
+          fill="#5DD167"
+          height={24}
+          viewBox="0 0 66 66"
+          width={24}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          
+          <circle
+            cx="33"
+            cy="33"
+            fill="none"
+            r="30"
+            stroke="#5DD167"
+          />
+        </svg>
+      </div>
     </div>
-  </div>
+  </span>
 </label>
 `;
 
@@ -794,6 +832,10 @@ button:hover.c0 {
   text-align: right;
 }
 
+.c0 .kirk-text {
+  display: block;
+}
+
 .c0 .kirk-item-title--withBody {
   margin-bottom: 4px;
 }
@@ -875,21 +917,21 @@ button:hover.c0 {
 <label
   className="kirk-item kirk-item--clickable kirk-item-radio custom-class-name c0"
 >
-  <div
+  <span
     className="kirk-item-leftText"
   >
-    <div
+    <span
       className="kirk-text kirk-text-title c1"
     >
       Label title
-    </div>
-    <div
+    </span>
+    <span
       className="kirk-text kirk-text-body kirk-item-body c1"
     >
       Label
-    </div>
-  </div>
-  <div
+    </span>
+  </span>
+  <span
     className="kirk-item-rightText"
   >
     <div
@@ -902,8 +944,8 @@ button:hover.c0 {
     >
       Data info
     </div>
-  </div>
-  <div
+  </span>
+  <span
     className="kirk-item-rightAddon"
   >
     <input
@@ -935,6 +977,6 @@ button:hover.c0 {
         stroke="#00AFF5"
       />
     </svg>
-  </div>
+  </span>
 </label>
 `;

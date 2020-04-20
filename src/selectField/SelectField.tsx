@@ -15,6 +15,7 @@ export interface SelectFieldProps extends Partial<CommonFieldsProps> {
   readonly onBlur?: (event: React.FocusEvent<HTMLSelectElement>) => void
   readonly focus?: boolean
   readonly focusBorder?: boolean
+  readonly autoFocus?: boolean
   readonly autoComplete?: string
 }
 

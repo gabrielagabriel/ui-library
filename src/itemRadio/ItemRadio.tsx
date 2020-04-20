@@ -105,6 +105,11 @@ class ItemRadio extends Component<ItemRadioProps> {
           rightTitle={data}
           rightTitleDisplay={TextDisplayType.SUBHEADERSTRONG}
           rightBody={dataInfo}
+          /* No a11y issue here
+            - The input is well wrapped with the label
+            - The linter can't access the complex components implementation
+          */
+          // eslint-disable-next-line jsx-a11y/label-has-associated-control
           tag={<label />}
           rightAddon={radio}
           chevron={chevron && !isLoading}
